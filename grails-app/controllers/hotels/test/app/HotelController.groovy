@@ -1,7 +1,7 @@
 package hotels.test.app
 
 class HotelController {
-    def scaffold = true
+    static scaffold = true
 
     def index() {
         [hotelInstanceList: Hotel.list()]

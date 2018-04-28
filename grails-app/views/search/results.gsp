@@ -1,46 +1,55 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="hotels.test.app.Hotel" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Поиск</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <meta name="layout" content="main">
+    <g:set var="entityName" value="${message(code: 'hotel.label', default: 'Hotel')}"/>
+    <title>Search</title>
 </head>
 
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col">
+<a href="#list-hotel" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
+                                                            default="Skip to content&hellip;"/></a>
 
-            <h2>Результаты</h2>
-            <h4>Найденных отелей: ${hotels.size()}</h4>
-            <g:if test="${hotels.size() > 0}">
-                <table class="table table-hover table-bordered">
-                    <tr>
-                        <th>Название</th>
-                        <th>Звездность</th>
-                        <th>Страна</th>
-                    </tr>
-                    <g:each in="${hotels}" var="hotel">
-                        <tr>
-                            <td>${hotel.name}
-                                <g:if test="${hotel.site != null}">
-                                    <br><a href="${hotel.site}" target="_blank">Перейти на сайт</a>
-                                </g:if>
-                            </td>
-                            <td>${hotel.stars}</td>
-                            <td>${hotel.country.name}</td>
-                        </tr>
-                    </g:each>
+<div class="nav" role="navigation">
+    <ul>
+        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+        <li><a class="list" href="${createLink(uri: '/country')}">
+            <g:message code="default.list.label" args="['Country']"/></a></li>
+        <li><a class="list" href="${createLink(uri: '/hotel')}">
+            <g:message code="default.list.label" args="['Hotel']"/></a></li>
+    </ul>
+</div>
 
-                </table>
-            </g:if>
-            <g:else>
-                По Вашему запросу ничего не найдено
-            </g:else>
-            <div>
-                <a href="./">Новый поиск</a>
-            </div>
-        </div>
+<div class="content scaffold-list" role="main">
+    <h2>Результаты</h2>
+    <h4>Найденных отелей: ${hotels.size()}</h4>
+    <g:if test="${hotels.size() > 0}">
+        <table class="table table-hover table-bordered">
+            <tr>
+                <th>Название</th>
+                <th>Звездность</th>
+                <th>Страна</th>
+            </tr>
+            <g:each in="${hotels}" var="hotel">
+                <tr>
+                    <td>${hotel.name}
+                        <g:if test="${hotel.site != null}">
+                            <br><a href="${hotel.site}" target="_blank">Перейти на сайт</a>
+                        </g:if>
+                    </td>
+                    <td>${hotel.stars}</td>
+                    <td>${hotel.country.name}</td>
+                </tr>
+            </g:each>
+
+        </table>
+    </g:if>
+    <g:else>
+        По Вашему запросу ничего не найдено
+    </g:else>
+    <div>
+        <a href="./">Новый поиск</a>
     </div>
 </div>
 </body>

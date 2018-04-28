@@ -1,7 +1,7 @@
 package hotels.test.app
 
 class CountryController {
-    def scaffold = true
+    static scaffold = true
 
     def index() {
         //def results = Country.findAll()

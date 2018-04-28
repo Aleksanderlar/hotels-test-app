@@ -1,24 +1,34 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="hotels.test.app.Hotel" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Поиск</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
+    <meta name="layout" content="main">
+    <g:set var="entityName" value="${message(code: 'hotel.label', default: 'Hotel')}"/>
+    <title>Search</title>
 </head>
 
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h2>Поиск</h2>
-            <form action="results" class="form-inline">
-                <input class="form-control" type="text" name="name" placeholder="Название">
-                <input class="btn btn-primary" type="submit" value="Найти">
-            </form>
-        </div>
-    </div>
+<a href="#list-hotel" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
+                                                            default="Skip to content&hellip;"/></a>
+
+<div class="nav" role="navigation">
+    <ul>
+        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+        <li><a class="list" href="${createLink(uri: '/country')}">
+            <g:message code="default.list.label" args="['Country']"/></a></li>
+        <li><a class="list" href="${createLink(uri: '/hotel')}">
+            <g:message code="default.list.label" args="['Hotel']"/></a></li>
+    </ul>
 </div>
 
+<div class="content scaffold-list" role="main">
+    <h1>Поиск</h1>
+    <div class="container">
+        <form action="/search/results" class="form-inline">
+            <input class="form-control" type="text" name="name" placeholder="Название">
+            <input class="btn btn-primary" type="submit" value="Найти">
+        </form>
+    </div>
+</div>
 </body>
 </html>
